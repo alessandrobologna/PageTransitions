@@ -180,14 +180,12 @@
 		</script>
 		<script>
 			function rundemo() {
-				var source   = $("#entry-template").html();
-				var template = Handlebars.compile(source);
 				$main = $('#pt-main');
 				$.get('http://cdn.api.qa.1bot.co/stats/com/people.query.facebook.full.50.tidy.json', function(data) {
 					console.log(data.urls);
 					$.each(data.urls,function(i,entry){
 						console.log(entry.url);
-						$main.render('entry-template', {
+						$main.render('#entry-template', {
 						    field1: 'Hello',
 						    field2: 'world!'
 						});
