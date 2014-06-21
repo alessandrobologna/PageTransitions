@@ -159,42 +159,40 @@
 		</div><!-- /triggers -->
 
 		<div id="pt-main" class="pt-perspective">
-		
 			<div class="pt-page pt-page-1"><h1><span>A collection of</span><strong>Page</strong> Transitions</h1></div>
-			<div class="pt-page pt-page-2"><h1><span>A collection of</span><strong>Page</strong> Transitions</h1></div>
-			<div class="pt-page pt-page-3"><h1><span>A collection of</span><strong>Page</strong> Transitions</h1></div>
-			<div class="pt-page pt-page-4"><h1><span>A collection of</span><strong>Page</strong> Transitions</h1></div>
-			<div class="pt-page pt-page-5"><h1><span>A collection of</span><strong>Page</strong> Transitions</h1></div>
-			<div class="pt-page pt-page-6"><h1><span>A collection of</span><strong>Page</strong> Transitions</h1></div>
 		</div>
 
 		<div class="pt-message">
 			<p>Your browser does not support CSS animations.</p>
 		</div>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script src="js/jquery.dlmenu.js"></script>
-		<script src="submodules/jquery-handlebars/bin/jquery-handlebars-1.1.5.min.js"></script>
-		<script id="entry-template" type="text/x-handlebars-template">
-			<div class="pt-page pt-page-1"><h1><span>{{field1}}</h1></div>		
-		</script>
 		<script>
 			function rundemo() {
 				$main = $('#pt-main');
-				$.get('http://cdn.api.qa.1bot.co/stats/com/people.query.facebook.full.50.tidy.json', function(data) {
+				$.get('http://cdn.api.qa.1bot.co/stats/com/time.query.facebook.full.50.tidy.json', function(data) {
 					console.log(data.urls);
 					$.each(data.urls,function(i,entry){
 						console.log(entry.url);
-						$main.render('#entry-template', {
-						    field1: 'Hello',
-						    field2: 'world!'
-						});
+						$('<div class="pt-page pt-page-' + (i+1) + '"><div>').render('#entry-template', {
+						    title: entry.headline,
+						    thumbnail: entry.thumbnail.replace('resize.320.jpg','resize.1000.jpg')
+						}).appendTo($main);
 					});
+					PageTransitions();
 				});
 			}
 		
+		</script>		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="js/jquery.dlmenu.js"></script>
+		<script src="js/pagetransitions.js"></script>
+		<script src="modules/jquery-handlebars/bin/jquery-handlebars-1.1.5.min.js" onload="rundemo()"></script>
+	
+		<script id="entry-template" type="text/x-handlebars-template">
+			<h1>{{title}}</h1>
+			<div class="image" style="background-image:url('{{thumbnail}}')"></div>		
 		</script>
-		<script src="js/pagetransitions.js" onload="rundemo()"></script>
+	
 		
 	</body>
 </html>

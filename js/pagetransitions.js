@@ -429,4 +429,4 @@ var PageTransitions = (function() {
 		nextPage : nextPage
 	};
 
-})();
+});

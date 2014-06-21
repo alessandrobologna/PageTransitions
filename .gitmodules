@@ -1,3 +1,6 @@
 [submodule "submodules/--force"]
 	path = submodules/--force
 	url = https://github.com/marshalys/jquery-handlebars
+[submodule "modules/jquery-handlebars"]
+	path = modules/jquery-handlebars
+	url = https://github.com/marshalys/jquery-handlebars
